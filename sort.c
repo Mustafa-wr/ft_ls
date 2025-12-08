@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:48:50 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 20:57:31 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/08 21:30:40 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_entry	*new_entry(char *name, char *path, t_options *opts)
 {
 	t_entry		*entry;
 	struct stat	sb;
-	char		fullpath[1024];
+	char		*tmp;
+	char		*fullpath;
 
 	entry = malloc(sizeof(t_entry));
 	if (!entry)
@@ -26,11 +27,14 @@ t_entry	*new_entry(char *name, char *path, t_options *opts)
 		return (free(entry), NULL);
 	if (opts->t)
 	{
-		snprintf(fullpath, 1024, "%s/%s", path, name);
-		if (stat(fullpath, &sb) == 0)
+		tmp = ft_strjoin(path, "/");
+		fullpath = ft_strjoin(tmp, name);
+		free(tmp);
+		if (fullpath && stat(fullpath, &sb) == 0)
 			entry->mtime = sb.st_mtime;
 		else
 			entry->mtime = 0;
+		free(fullpath);
 	}
 	entry->next = NULL;
 	return (entry);
@@ -87,35 +91,34 @@ void	sort_entries(t_entry **head)
 	}
 }
 
-void sort_entries_by_time(t_entry **head)
+void	sort_entries_by_time(t_entry **head)
 {
-    t_entry *i, *j;
-    char    *tmp_name;
-    time_t  tmp_time;
-    
-    if (!head || !*head)
-        return;
-    i = *head;
-    while (i)
-    {
-        j = i->next;
-        while (j)
-        {
-            if (i->mtime < j->mtime)
-            {
-                tmp_name = i->name;
-                i->name = j->name;
-                j->name = tmp_name;
-                tmp_time = i->mtime;
-                i->mtime = j->mtime;
-                j->mtime = tmp_time;
-            }
-            j = j->next;
-        }
-        i = i->next;
-    }
-}
+	char	*tmp_name;
+	time_t	tmp_time;
 
+	t_entry *i, *j;
+	if (!head || !*head)
+		return ;
+	i = *head;
+	while (i)
+	{
+		j = i->next;
+		while (j)
+		{
+			if (i->mtime < j->mtime)
+			{
+				tmp_name = i->name;
+				i->name = j->name;
+				j->name = tmp_name;
+				tmp_time = i->mtime;
+				i->mtime = j->mtime;
+				j->mtime = tmp_time;
+			}
+			j = j->next;
+		}
+		i = i->next;
+	}
+}
 
 void	reverse_entries(t_entry **head)
 {
