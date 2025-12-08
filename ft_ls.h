@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:59:14 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 17:04:23 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/08 19:55:43 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+# include "libft/libft.h"
 
 # define FT_LS_H
 
@@ -29,5 +30,17 @@ typedef struct s_options
 	int r; // reverse        (-r)
 	int t; // time sort      (-t)
 }	t_options;
+
+typedef struct s_entry
+{
+    char            *name;
+    struct s_entry  *next;
+}   t_entry;
+
+t_entry *new_entry(char *name);
+void    add_entry(t_entry **head, t_entry *new);
+void sort_entries(t_entry **head);
+void print_entries(t_entry *head);
+void free_entries(t_entry *head);
 
 #endif
