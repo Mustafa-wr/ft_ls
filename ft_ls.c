@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:52:32 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 19:55:13 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/08 20:10:18 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,19 @@ int	parse_options(int ac, char **av, t_options *opts, int *start_index)
 	return (1);
 }
 
-int list_directory(char *path, t_options *opts)
+static void print_error(char *path)
 {
-    DIR         *d;
-    struct dirent *ent;
-    t_entry     *head;
-    t_entry     *new;
-    
-    head = NULL;
-    d = opendir(path);
-    if (!d)
-    {
-        write(2, "ls: cannot access '", 19);
-        write(2, path, strlen(path));
-        write(2, "': ", 3);
-        perror("");
-        return (1);
-    }
+    write(2, "ls: cannot access '", 19);
+    write(2, path, strlen(path));
+    write(2, "': ", 3);
+    perror("");
+}
+
+static int read_entries(DIR *d, t_entry **head, t_options *opts)
+{
+    struct dirent   *ent;
+    t_entry         *new;
+
     while ((ent = readdir(d)) != NULL)
     {
         if (!opts->a && ent->d_name[0] == '.')
@@ -90,14 +86,29 @@ int list_directory(char *path, t_options *opts)
         new = new_entry(ent->d_name);
         if (!new)
         {
-            free_entries(head);
-            closedir(d);
-            return (1);
+            free_entries(*head);
+            return (0);
         }
-        add_entry(&head, new);
+        add_entry(head, new);
     }
+    return (1);
+}
+
+int list_directory(char *path, t_options *opts)
+{
+    DIR     *d;
+    t_entry *head;
+
+    head = NULL;
+    d = opendir(path);
+    if (!d)
+        return (print_error(path), 1);
+    if (!read_entries(d, &head, opts))
+        return (closedir(d), 1);
     closedir(d);
     sort_entries(&head);
+    if (opts->r)
+        reverse_entries(&head);
     print_entries(head);
     free_entries(head);
     return (0);

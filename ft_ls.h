@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:59:14 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 19:55:43 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/08 20:04:13 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void    add_entry(t_entry **head, t_entry *new);
 void sort_entries(t_entry **head);
 void print_entries(t_entry *head);
 void free_entries(t_entry *head);
+void reverse_entries(t_entry **head);
 
 #endif

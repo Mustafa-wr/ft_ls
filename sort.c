@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:48:50 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 19:52:51 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/08 20:03:55 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,22 @@ void sort_entries(t_entry **head)
         }
         i = i->next;
     }
+}
+
+void reverse_entries(t_entry **head)
+{
+    t_entry *prev;
+    t_entry *curr;
+    t_entry *next;
+
+    prev = NULL;
+    curr = *head;
+    while (curr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    *head = prev;
 }
