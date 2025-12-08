@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:59:14 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 21:31:13 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/08 23:16:53 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_entry
 	char			*name;
 	struct s_entry	*next;
 	time_t			mtime;
+	int				is_directory;
 }					t_entry;
 
 t_entry				*new_entry(char *name, char *path, t_options *opts);
@@ -47,5 +48,9 @@ void				free_entries(t_entry *head);
 void				reverse_entries(t_entry **head);
 int					parse_options(int ac, char **av, t_options *opts,
 						int *start_index);
+void				list_recursively(char *path, t_options *opts,
+						t_entry *head);
+int					ft_strcmp(const char *s1, const char *s2);
+int					list_directory(char *path, t_options *opts, int print_newline, int silent);
 
 #endif
