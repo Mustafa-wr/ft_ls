@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:59:14 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 23:16:53 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/08 23:32:20 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int					parse_options(int ac, char **av, t_options *opts,
 void				list_recursively(char *path, t_options *opts,
 						t_entry *head);
 int					ft_strcmp(const char *s1, const char *s2);
-int					list_directory(char *path, t_options *opts, int print_newline, int silent);
+int					list_directory(char *path, t_options *opts,
+						int print_newline, int silent);
 
 #endif
