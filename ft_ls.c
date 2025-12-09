@@ -6,13 +6,13 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:52:32 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/09 15:34:26 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/09 17:30:25 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	print_error(char *path)
+void	print_error(char *path)
 {
 	write(2, "ls: cannot access '", 19);
 	write(2, path, strlen(path));
@@ -20,7 +20,7 @@ static void	print_error(char *path)
 	perror("");
 }
 
-static int	read_entries(DIR *d, t_entry **head, t_options *opts, char *path)
+int	read_entries(DIR *d, t_entry **head, t_options *opts, char *path)
 {
 	struct dirent	*ent;
 	t_entry			*new;
@@ -45,38 +45,29 @@ static int	read_entries(DIR *d, t_entry **head, t_options *opts, char *path)
 	return (1);
 }
 
-int	list_directory(char *path, t_options *opts, int print_newline, int silent)
+void	print_entries_long(t_entry *head)
 {
-	DIR		*d;
-	t_entry	*head;
+	t_entry			*current;
+	char			*perms;
+	char			*time_str;
+	struct passwd	*pwd;
+	struct group	*grp;
 
-	head = NULL;
-	d = opendir(path);
-	if (!d)
+	current = head;
+	while (current)
 	{
-		if (!silent)
-			print_error(path);
-		return (1);
+		perms = format_permissions(current->mode);
+		time_str = format_time(current->mtime);
+		pwd = getpwuid(current->uid);
+		grp = getgrgid(current->gid);
+		if (perms && time_str && pwd && grp)
+			ft_printf("%s %2lu %-8s %-8s %5lld %s %s\n", perms,
+				(unsigned long)current->nlink, pwd->pw_name, grp->gr_name,
+				(long long)current->size, time_str, current->name);
+		free(perms);
+		free(time_str);
+		current = current->next;
 	}
-	if (!read_entries(d, &head, opts, path))
-		return (closedir(d), 1);
-	closedir(d);
-	if (opts->t)
-		sort_entries_by_time(&head);
-	else
-		sort_entries(&head);
-	if (opts->r)
-		reverse_entries(&head);
-	if (opts->l)
-		print_entries_long(head);
-	else
-		print_entries(head);
-	if (opts->c_r)
-		list_recursively(path, opts, head);
-	free_entries(head);
-	if (print_newline)
-		write(1, "\n", 1);
-	return (0);
 }
 
 int	main(int ac, char **av)

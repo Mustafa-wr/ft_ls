@@ -1,12 +1,12 @@
 NAME = ft_ls
 
-SRCS =	ft_ls.c sort.c utils.c parser.c format.c
+SRCS =	ft_ls.c sort.c utils.c parser.c format.c string_format.c sort2.c lister.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address -g
 
 all : $(NAME)
 

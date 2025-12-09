@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 00:43:18 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/09 15:28:49 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/09 17:16:32 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,27 @@ int	printptr(unsigned long long pointer)
 
 int	ft_putnbr(int n)
 {
-    int	len;
+	int	len;
 
-    len = 0;
-    if (n <= 2147483647)
-    {
-        if (n < 0)
-        {
-            if (n == -2147483648)
-                return (ft_putstr("-2147483648"));
-            len += ft_putchar('-');
-            n = n * -1;
-        }
-        if (n <= 9)
-            len += ft_putchar(n + '0');
-        if (n > 9)
-        {
-            len += ft_putnbr(n / 10);
-            len += ft_putnbr(n % 10);
-        }
-    }
-    return (len);
+	len = 0;
+	if (n <= 2147483647)
+	{
+		if (n < 0)
+		{
+			if (n == -2147483648)
+				return (ft_putstr("-2147483648"));
+			len += ft_putchar('-');
+			n = n * -1;
+		}
+		if (n <= 9)
+			len += ft_putchar(n + '0');
+		if (n > 9)
+		{
+			len += ft_putnbr(n / 10);
+			len += ft_putnbr(n % 10);
+		}
+	}
+	return (len);
 }
 
 int	ft_putunnbr(unsigned int n)
@@ -90,25 +90,12 @@ int	ft_format(va_list args, const char format, int printl)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int		i;
-	int		num_chars;
+	int		ret;
 
 	va_start(args, format);
-	num_chars = 0;
-	i = 0;
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%')
-		{
-			num_chars += ft_format(args, format[i + 1], num_chars);
-			i++;
-		}
-		else
-			num_chars += ft_putchar(format[i]);
-		i++;
-	}
+	ret = vprintf(format, args);
 	va_end(args);
-	return (num_chars);
+	return (ret);
 }
 
 // #include <stdio.h>
