@@ -6,7 +6,7 @@
 #    By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 18:04:04 by mradwan           #+#    #+#              #
-#    Updated: 2025/12/08 19:46:53 by mradwan          ###   ########.fr        #
+#    Updated: 2025/12/09 15:27:28 by mradwan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,9 @@ SRCS = ft_memset.c		\
 	   ft_striteri.c	\
 	   ft_itoa.c		\
 	   ft_putendl_fd.c	\
-	   ft_strmapi.c
+	   ft_strmapi.c		\
+	   ft_printf.c		\
+	   print_utils.c
 
 
 		

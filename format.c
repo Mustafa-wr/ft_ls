@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:00:00 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/09 11:43:49 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/09 15:29:05 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ char	*format_time(time_t mtime)
 static void	print_entry_info(t_entry *entry, char *perms, char *time_str,
 		struct passwd *pwd, struct group *grp)
 {
-	printf("%s %2lu %-8s %-8s %5lld %s %s\n", perms,
+	ft_printf("%s %2lu %-8s %-8s %5lld %s %s\n", perms,
 		(unsigned long)entry->nlink, pwd->pw_name, grp->gr_name,
 		(long long)entry->size, time_str, entry->name);
 }

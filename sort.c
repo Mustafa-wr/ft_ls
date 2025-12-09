@@ -6,11 +6,22 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:48:50 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/09 11:14:04 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/09 15:33:28 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static void	insertion(t_entry *entry, struct stat *sb)
+{
+	entry->mtime = sb->st_mtime;
+	entry->is_directory = S_ISDIR(sb->st_mode);
+	entry->mode = sb->st_mode;
+	entry->nlink = sb->st_nlink;
+	entry->uid = sb->st_uid;
+	entry->gid = sb->st_gid;
+	entry->size = sb->st_size;
+}
 
 t_entry	*new_entry(char *name, char *path, t_options *opts)
 {
@@ -33,15 +44,7 @@ t_entry	*new_entry(char *name, char *path, t_options *opts)
 		fullpath = ft_strjoin(tmp, name);
 		free(tmp);
 		if (fullpath && stat(fullpath, &sb) == 0)
-		{
-			entry->mtime = sb.st_mtime;
-			entry->is_directory = S_ISDIR(sb.st_mode);
-			entry->mode = sb.st_mode;
-			entry->nlink = sb.st_nlink;
-			entry->uid = sb.st_uid;
-			entry->gid = sb.st_gid;
-			entry->size = sb.st_size;
-		}
+			insertion(entry, &stat);
 		free(fullpath);
 	}
 	entry->next = NULL;

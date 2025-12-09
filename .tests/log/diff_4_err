@@ -1,0 +1,1 @@
+1c1 < ./tester.sh: line 37: valgrind: command not found --- > ./tester.sh: line 38: valgrind: command not found
