@@ -1,1 +1,0 @@
-1,5d0 < .tests/test: < file1 < file2 < file3 < file4 7,8c2,5 < < -t: --- > file4 > file3 > file2 > file1

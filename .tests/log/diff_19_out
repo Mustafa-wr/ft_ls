@@ -1,1 +1,0 @@
-1,3c1 < .tests/test/file1: < .tests/test/test2: < file2 --- > -rw-r--r-- 1 root root 0 Dec 9 10:47 .tests/test/file1 5c3,5 < -l: --- > .tests/test/test2: > total 0 > -rw-r--r-- 1 root root 0 Dec 9 10:47 file2
