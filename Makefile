@@ -1,6 +1,6 @@
 NAME = ft_ls
 
-SRCS =	ft_ls.c sort.c utils.c parser.c
+SRCS =	ft_ls.c sort.c utils.c parser.c format.c
 
 OBJS = $(SRCS:.c=.o)
 

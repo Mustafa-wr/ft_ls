@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:52:32 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 23:18:52 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/09 11:38:26 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ int list_directory(char *path, t_options *opts, int print_newline, int silent)
         sort_entries(&head);
     if (opts->r)
         reverse_entries(&head);
-    print_entries(head);
+    if (opts->l)
+        print_entries_long(head);
+    else
+        print_entries(head);
     if (opts->c_r)
         list_recursively(path, opts, head);
     free_entries(head);

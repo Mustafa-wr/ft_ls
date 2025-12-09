@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:59:14 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 23:32:20 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/09 11:39:47 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/stat.h>
 # include <time.h>
 # include <unistd.h>
+# include <pwd.h>
+# include <grp.h>
 
 
 typedef struct s_options
@@ -37,6 +39,11 @@ typedef struct s_entry
 	struct s_entry	*next;
 	time_t			mtime;
 	int				is_directory;
+	mode_t			mode;
+	nlink_t			nlink;
+	uid_t			uid;
+	gid_t			gid;
+	off_t			size;
 }					t_entry;
 
 t_entry				*new_entry(char *name, char *path, t_options *opts);
@@ -53,5 +60,7 @@ void				list_recursively(char *path, t_options *opts,
 int					ft_strcmp(const char *s1, const char *s2);
 int					list_directory(char *path, t_options *opts,
 						int print_newline, int silent);
+void				print_entries_long(t_entry *head);
+
 
 #endif

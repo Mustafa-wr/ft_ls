@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 19:48:50 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/08 23:37:09 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/09 11:14:04 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_entry	*new_entry(char *name, char *path, t_options *opts)
 		return (free(entry), NULL);
 	entry->mtime = 0;
 	entry->is_directory = 0;
-	if (opts->t || opts->c_r)
+	if (opts->t || opts->c_r || opts->l)
 	{
 		tmp = ft_strjoin(path, "/");
 		fullpath = ft_strjoin(tmp, name);
@@ -36,6 +36,11 @@ t_entry	*new_entry(char *name, char *path, t_options *opts)
 		{
 			entry->mtime = sb.st_mtime;
 			entry->is_directory = S_ISDIR(sb.st_mode);
+			entry->mode = sb.st_mode;
+			entry->nlink = sb.st_nlink;
+			entry->uid = sb.st_uid;
+			entry->gid = sb.st_gid;
+			entry->size = sb.st_size;
 		}
 		free(fullpath);
 	}
