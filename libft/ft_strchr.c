@@ -32,9 +32,11 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 /*
-int main()
+int	main(void)
 {
-    char *t = "hello";
-    printf("%s\n", ft_strchr(t, 'e'));
+	char	*t;
+
+	t = "hello";
+	printf("%s\n", ft_strchr(t, 'e'));
 }
 */

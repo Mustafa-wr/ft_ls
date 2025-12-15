@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:36:25 by mradwan           #+#    #+#             */
-/*   Updated: 2022/08/01 19:20:40 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:43:42 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	while (hay[i] != '\0' && i < len)
 	{
 		c = 0;
-		while (hay[i + c] != '\0' && needle[c] != '\0' && hay[i
-				+ c] == needle[c] && i + c < len)
+		while (hay[i + c] != '\0' && needle[c] != '\0'
+			&& hay[i + c] == needle[c] && i + c < len)
 			c++;
 		if (c == n_len)
 			return (hay + i);

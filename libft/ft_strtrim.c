@@ -6,15 +6,15 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 05:16:34 by mradwan           #+#    #+#             */
-/*   Updated: 2022/07/26 05:17:02 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:32:57 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s1)
@@ -32,6 +32,6 @@ char *ft_strtrim(char const *s1, char const *set)
 /*
 int	main(void)
 {
-    printf ("%s", ft_strtrim("   aksk.  ", "  "));
+	printf ("%s", ft_strtrim("   aksk.  ", "  "));
 }
 */

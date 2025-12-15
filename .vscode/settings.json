@@ -1,0 +1,7 @@
+{
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true
+    },
+    "c_formatter_42.enabled": true
+}

@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:59:14 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/09 17:37:47 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:42:27 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,21 @@
 
 # include "libft/libft.h"
 # include <dirent.h>
+# include <grp.h>
+# include <pwd.h>
 # include <stdio.h>
 # include <string.h>
 # include <sys/stat.h>
 # include <time.h>
 # include <unistd.h>
-# include <pwd.h>
-# include <grp.h>
-
 
 typedef struct s_options
 {
-	int l;   // long format    (-l)
-	int c_r; // recursive      (-R)
-	int a;   // all/hidden     (-a)
-	int r;   // reverse        (-r)
-	int t;   // time sort      (-t)
+	int	l;
+	int	c_r;
+	int	a;
+	int	r;
+	int	t;
 }					t_options;
 
 typedef struct s_entry
@@ -50,7 +49,8 @@ typedef struct s_entry
 t_entry				*new_entry(char *name, char *path, t_options *opts);
 void				add_entry(t_entry **head, t_entry *new);
 void				print_error(char *path);
-int					read_entries(DIR *d, t_entry **head, t_options *opts, char *path);
+int					read_entries(DIR *d, t_entry **head, t_options *opts,
+						char *path);
 void				sort_entries(t_entry **head);
 void				sort_entries_by_time(t_entry **head);
 void				print_entries(t_entry *head);
@@ -71,6 +71,7 @@ void				format_day(char *buffer, int *pos, int day);
 void				format_hour_min(char *buffer, int *pos, int hour, int min);
 void				format_time_string(char *buffer, struct tm *tm_info);
 char				*format_time(time_t mtime);
-int					list_directory(char *path, t_options *opts, int print_newline, int silent);
+int					list_directory(char *path, t_options *opts,
+						int print_newline, int silent);
 
 #endif

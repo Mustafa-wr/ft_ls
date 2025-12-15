@@ -29,14 +29,14 @@ int	main(void)
 	char	bytes[5];
 	int		i;
 
-    bytes[5] = {1, 'i', 3, 4,'x'};
-    ft_bzero(bytes, 5);
-    i = 0;
-    while (i < 5)
-    {
-        printf("%d, ", bytes[i]);
-        i++;
-    }
-    return (0);
+	bytes[5] = {1, 'i', 3, 4,'x'};
+	ft_bzero(bytes, 5);
+	i = 0;
+	while (i < 5)
+	{
+		printf("%d, ", bytes[i]);
+		i++;
+	}
+	return (0);
 }
 */

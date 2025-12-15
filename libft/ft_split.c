@@ -22,7 +22,7 @@ static void	ft_undoalloc(char *s, int i)
 	free(s);
 }
 
-static	int	ft_worddet(char const *s, char c)
+static int	ft_worddet(char const *s, char c)
 {
 	int	i;
 	int	count;
@@ -86,9 +86,12 @@ char	**ft_split(char const *s, char c)
 /*
 int	main(void)
 {
-	int i = 0;
-	char a[] = "   this";
-	char **split = ft_split(a, ' ');
+	int		i;
+	char	a[] = "   this";
+	char	**split;
+
+	i = 0;
+	split = ft_split(a, ' ');
 	while (split[i])
 	{
 		printf("%s\n", split[i]);

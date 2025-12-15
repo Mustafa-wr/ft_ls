@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 17:24:51 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/09 17:38:26 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:39:00 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int	open_and_read(char *path, DIR **d, t_entry **head, t_options *opts)
 
 int	list_directory(char *path, t_options *opts, int print_newline, int silent)
 {
-	DIR *d;
-	t_entry *head;
+	DIR		*d;
+	t_entry	*head;
 
 	head = NULL;
-    (void)silent;
+	(void)silent;
 	if (!open_and_read(path, &d, &head, opts))
 		return (1);
 	if (opts->t)

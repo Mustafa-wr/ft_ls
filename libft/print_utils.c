@@ -6,7 +6,7 @@
 /*   By: mradwan <mradwan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 00:43:51 by mradwan           #+#    #+#             */
-/*   Updated: 2025/12/09 15:31:04 by mradwan          ###   ########.fr       */
+/*   Updated: 2025/12/15 18:43:03 by mradwan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ int	printhex(unsigned long long num, int z)
 
 int	printpercentage(void)
 {
-	return (write (1, "%", 1));
+	return (write(1, "%", 1));
 }

@@ -31,10 +31,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (ft_strlen(dst) + ft_strlen(&src[d]));
 }
 /*
-int main()
+int	main(void)
 {
-    char s[] = "as";
-    char d[]  = "sfss";
-    printf("d: %zu\n", ft_strlcat(d,s, 5));
+	char	s[] = "as";
+
+	char d[]  = "sfss";
+	printf("d: %zu\n", ft_strlcat(d,s, 5));
 }
 */
