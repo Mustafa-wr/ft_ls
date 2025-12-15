@@ -12,6 +12,11 @@
 
 #include "ft_ls.h"
 
+static void	init_entry(t_entry *entry)
+{
+	ft_bzero(entry, sizeof(t_entry));
+}
+
 static void	insertion(t_entry *entry, struct stat *sb)
 {
 	entry->mtime = sb->st_mtime;
@@ -33,21 +38,21 @@ t_entry	*new_entry(char *name, char *path, t_options *opts)
 	entry = malloc(sizeof(t_entry));
 	if (!entry)
 		return (NULL);
-	entry->name = strdup(name);
+	init_entry(entry);
+	entry->name = ft_strdup(name);
 	if (!entry->name)
 		return (free(entry), NULL);
-	entry->mtime = 0;
-	entry->is_directory = 0;
 	if (opts->t || opts->c_r || opts->l)
 	{
 		tmp = ft_strjoin(path, "/");
+		if (!tmp)
+			return (free(entry->name), free(entry), NULL);
 		fullpath = ft_strjoin(tmp, name);
 		free(tmp);
 		if (fullpath && stat(fullpath, &sb) == 0)
 			insertion(entry, &sb);
 		free(fullpath);
 	}
-	entry->next = NULL;
 	return (entry);
 }
 

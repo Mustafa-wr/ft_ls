@@ -50,11 +50,6 @@ int	ft_putunnbr(unsigned int n)
 	int	len;
 
 	len = 0;
-	if (n < 0)
-	{
-		len += ft_putchar('-');
-		n = n * -1;
-	}
 	if (n <= 9)
 		len += ft_putchar(n + '0');
 	if (n > 9)
